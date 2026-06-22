@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athena Buket — Rangkaian Bunga, Rangkaian Makna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5EA;
+    --cream-deep:#F1E8D6;
+    --charcoal:#1B1611;
+    --charcoal-soft:#2A2219;
+    --gold:#B8863A;
+    --gold-bright:#D4A656;
+    --gold-deep:#8C6420;
+    --sage:#737D63;
+    --rose:#C08B7E;
+    --line:rgba(184,134,58,0.28);
+    --ink:#332A20;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    font-weight:500;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+
+  /* ---------- Utility ---------- */
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 34px;
+    border-radius:2px;
+    font-size:0.86rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-weight:500;
+    border:1px solid var(--gold);
+    transition:all .35s ease;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-solid{ background:var(--gold); color:var(--cream); }
+  .btn-solid:hover{ background:var(--gold-deep); border-color:var(--gold-deep); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--charcoal); }
+  .btn-outline.light{ color:var(--cream); border-color:rgba(250,245,234,0.55); }
+  .btn-outline:hover{ background:rgba(184,134,58,0.1); transform:translateY(-2px); }
+
+  .divider-line{
+    width:64px;height:1px;background:var(--gold);
+    margin:18px 0 22px;
+  }
+  .center .divider-line{margin-left:auto;margin-right:auto;}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 6vw;
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+    mix-blend-mode:normal;
+  }
+  header.nav.scrolled{
+    background:rgba(250,245,234,0.92);
+    backdrop-filter:blur(10px);
+    padding:14px 6vw;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .nav-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    color:var(--cream);
+    display:flex;align-items:center;gap:16px;
+  }
+  .nav-logo .logo{
+    width:auto;
+    max-width:160px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+  }
+  header.nav.scrolled .nav-logo{ color:var(--ink); }
+  .nav-logo .leaf{width:20px;height:20px;}
+
+  .nav-links{ display:flex; gap:38px; align-items:center; }
+  .nav-links a{
+    font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:rgba(250,245,234,0.88); font-weight:400;
+    position:relative; padding-bottom:4px;
+    transition:color .3s ease;
+  }
+  header.nav.scrolled .nav-links a{ color:var(--ink); }
+  .nav-links a::after{
+    content:''; position:absolute; bottom:0; left:0; width:0; height:1px;
+    background:var(--gold); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    padding:11px 22px; font-size:0.72rem;
+  }
+  .nav-burger{display:none;}
+
+  @media (max-width:880px){
+    .nav-links{display:none;}
+    .nav-burger{display:block;color:var(--cream);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(250,245,234,0.5);padding:9px 16px;}
+    header.nav.scrolled .nav-burger{color:var(--ink);border-color:var(--line);}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    height:100vh;
+    min-height:680px;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(160deg,#1B1611 0%, #241D15 55%, #2E2419 100%);
+    overflow:hidden;
+  }
+  .hero-illustration{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:flex-end;
+    opacity:0.9;
+  }
+  .hero-illustration svg{
+    width:min(62vw,820px);
+    transform:translateX(8%);
+  }
+  .hero-grain{
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 20%, rgba(212,166,86,0.10), transparent 55%),
+               radial-gradient(circle at 80% 80%, rgba(184,134,58,0.08), transparent 50%);
+    pointer-events:none;
+  }
+  .hero-content{
+    position:relative; z-index:5;
+    max-width:660px;
+    padding:0 6vw;
+  }
+  .hero-content .eyebrow{ color:var(--gold-bright); }
+  .hero-content h1{
+    color:var(--cream);
+    font-size:clamp(2.6rem,5.6vw,4.6rem);
+    line-height:1.08;
+    margin:18px 0 22px;
+  }
+  .hero-content h1 em{
+    font-style:italic; color:var(--gold-bright); font-weight:600;
+  }
+  .hero-content p{
+    color:rgba(250,245,234,0.78);
+    font-size:1.04rem;
+    line-height:1.75;
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-cta{ display:flex; gap:16px; flex-wrap:wrap; }
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:rgba(250,245,234,0.55);
+    font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
+    z-index:5;
+  }
+  .scroll-cue .line{width:1px;height:34px;background:rgba(250,245,234,0.35);
+    animation:scrollPulse 2s ease-in-out infinite;}
+  @keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  /* ---------- Section heading shared ---------- */
+  .sec-head{ max-width:620px; margin-bottom:54px; }
+  .sec-head h2{ font-size:clamp(2rem,3.6vw,2.9rem); line-height:1.18; color:var(--ink); }
+  .sec-head p{ font-size:1rem; line-height:1.75; color:#5b5042; margin-top:16px; max-width:520px;}
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  /* ---------- Story (parallax two col) ---------- */
+  .story{
+    background:var(--cream);
+    padding:140px 0 130px;
+    overflow:hidden;
+  }
+  .story-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;
+  }
+  .story-text .eyebrow{margin-bottom:10px;display:block;}
+  .story-text h2{ font-size:clamp(1.9rem,3.4vw,2.7rem); line-height:1.22; margin-bottom:20px;}
+  .story-text p{ font-size:1.01rem; line-height:1.85; color:#5b5042; margin-bottom:18px;}
+  .story-signature{
+    margin-top:28px; font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:1.25rem; color:var(--gold-deep);
+  }
+  .story-visual{
+    position:relative; height:520px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .story-visual .layer{ position:absolute; }
+  .story-visual .layer-back{
+    width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle, var(--cream-deep) 0%, transparent 72%);
+    top:50%;left:50%;transform:translate(-50%,-50%);
+  }
+  .story-visual svg{ width:100%; max-width:380px; position:relative; z-index:2; }
+  .ring{
+    position:absolute; border:1px solid var(--line); border-radius:50%;
+  }
+  .ring.r1{width:430px;height:430px;top:50%;left:50%;transform:translate(-50%,-50%);}
+  .ring.r2{width:520px;height:520px;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+  @media (max-width:880px){
+    .story-grid{ grid-template-columns:1fr; gap:50px;}
+    .story-visual{ height:380px; order:-1;}
+  }
+
+  /* ---------- Stats band (parallax bg) ---------- */
+  .stats{
+    position:relative;
+    padding:96px 0;
+    background:
+      linear-gradient(160deg, rgba(27,22,17,0.94), rgba(42,34,25,0.94)),
+      var(--charcoal);
+    background-attachment:fixed;
+    color:var(--cream);
+  }
+  .stats::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 15% 30%, rgba(212,166,86,0.10), transparent 45%),
+                      radial-gradient(circle at 85% 70%, rgba(212,166,86,0.08), transparent 45%);
+  }
+  .stats-grid{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:30px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Cormorant Garamond',serif; font-weight:600;
+    font-size:clamp(2.2rem,3.4vw,3rem); color:var(--gold-bright);
+  }
+  .stat-label{
+    margin-top:10px; font-size:0.78rem; letter-spacing:0.08em;
+    color:rgba(250,245,234,0.72); line-height:1.5;
+  }
+  @media (max-width:760px){
+    .stats-grid{grid-template-columns:repeat(2,1fr); row-gap:50px;}
+  }
+
+  /* ---------- Collections ---------- */
+  .collections{ padding:140px 0 120px; background:var(--cream);}
+  .collection-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
+  }
+  .card{
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    padding:38px 28px 32px;
+    transition:transform .4s ease, box-shadow .4s ease, background .4s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 24px 50px -20px rgba(140,100,32,0.35);
+    background:#fff;
+  }
+  .card .icon{ width:48px; height:48px; margin-bottom:22px; color:var(--gold-deep);}
+  .card h3{ font-size:1.36rem; margin-bottom:10px; color:var(--ink);}
+  .card p{ font-size:0.88rem; line-height:1.7; color:#6b6052; margin-bottom:18px;}
+  .card .price{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1rem;
+    color:var(--gold-deep); border-top:1px solid var(--line); padding-top:14px; display:block;
+  }
+  @media (max-width:980px){ .collection-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .collection-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Catalog (gambar, nama, harga) ---------- */
+  .catalog{ padding:20px 0 140px; background:var(--cream); }
+  .catalog-filter{
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:46px;
+  }
+  .filter-btn{
+    font-size:0.74rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding:9px 20px; border:1px solid var(--line); background:transparent;
+    color:#6b6052; cursor:pointer; transition:all .3s ease; font-family:'Jost',sans-serif;
+  }
+  .filter-btn:hover{ border-color:var(--gold); color:var(--ink); }
+  .filter-btn.active{ background:var(--charcoal); border-color:var(--charcoal); color:var(--cream); }
+
+  .catalog-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px;
+  }
+  .catalog-card{
+    background:#fff; border:1px solid var(--line); overflow:hidden;
+    transition:transform .4s ease, box-shadow .4s ease;
+  }
+  .catalog-card:hover{ transform:translateY(-6px); box-shadow:0 22px 46px -22px rgba(140,100,32,0.32); }
+  .catalog-img{
+    position:relative; aspect-ratio:1/1; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* Ganti elemen <img> di dalam .catalog-img dengan foto asli buket — lihat komentar di HTML */
+  .catalog-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .catalog-img.c1{ background:linear-gradient(150deg,#8C6420,#B8863A); }
+  .catalog-img.c2{ background:linear-gradient(150deg,#7C5A45,#C08B7E); }
+  .catalog-img.c3{ background:linear-gradient(150deg,#5C5440,#737D63); }
+  .catalog-img.c4{ background:linear-gradient(150deg,#6E4A22,#D4A656); }
+  .catalog-tag{
+    position:absolute; top:12px; left:12px; z-index:2;
+    background:rgba(27,22,17,0.78); color:var(--gold-bright);
+    font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding:5px 12px;
+  }
+  .catalog-body{ padding:20px 20px 22px; }
+  .catalog-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.18rem; color:var(--ink); margin-bottom:4px; }
+  .catalog-desc{ font-size:0.8rem; color:#827661; line-height:1.6; margin-bottom:14px; min-height:38px; }
+  .catalog-row{
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid var(--line); padding-top:14px;
+  }
+  .catalog-price{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--gold-deep); }
+  .catalog-order{
+    font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink);
+    display:flex; align-items:center; gap:5px; transition:color .3s ease;
+  }
+  .catalog-order:hover{ color:var(--gold-deep); }
+  .catalog-order svg{ width:13px; height:13px; transition:transform .3s ease; }
+  .catalog-order:hover svg{ transform:translateX(3px); }
+
+  @media (max-width:980px){ .catalog-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .catalog-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Process ---------- */
+  .process{
+    padding:120px 0 130px;
+    background:var(--cream-deep);
+    position:relative;
+    overflow:hidden;
+  }
+  .process-deco{
+    position:absolute; top:-60px; right:-60px; width:340px; opacity:0.5; z-index:0;
+  }
+  .process-grid{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:50px;
+    margin-top:30px;
+  }
+  .process-step{ position:relative; padding-left:2px; }
+  .process-step .num{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600;
+    font-size:3.2rem; color:var(--gold); line-height:1; opacity:0.85;
+  }
+  .process-step h3{ font-size:1.3rem; margin:14px 0 10px; color:var(--ink);}
+  .process-step p{ font-size:0.92rem; line-height:1.75; color:#6b6052;}
+  .process-line{
+    position:absolute; top:28px; left:100%; width:50px; height:1px;
+    background:var(--gold); opacity:0.5;
+  }
+  @media (max-width:880px){
+    .process-grid{grid-template-columns:1fr; gap:46px;}
+    .process-line{display:none;}
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{ padding:130px 0; background:var(--cream); }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .testi-card{
+    border:1px solid var(--line); padding:36px 30px; position:relative;
+    background:linear-gradient(180deg, #fff, var(--cream));
+  }
+  .testi-quote{
+    font-family:'Cormorant Garamond',serif; font-size:2.6rem; color:var(--gold);
+    line-height:1; margin-bottom:6px; display:block;
+  }
+  .testi-card p{ font-size:0.95rem; line-height:1.8; color:#5b5042; margin-bottom:22px;}
+  .testi-name{ font-weight:500; color:var(--ink); font-size:0.92rem;}
+  .testi-role{ font-size:0.78rem; color:var(--sage); margin-top:2px;}
+  @media (max-width:880px){ .testi-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA banner (parallax) ---------- */
+  .cta-banner{
+    position:relative;
+    padding:150px 0;
+    background:
+      linear-gradient(150deg, rgba(27,22,17,0.92), rgba(58,42,21,0.88)),
+      var(--charcoal);
+    background-attachment:fixed;
+    color:var(--cream);
+    text-align:center;
+    overflow:hidden;
+  }
+  .cta-banner .cta-illustration{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:min(900px,90vw); opacity:0.14; z-index:0;
+  }
+  .cta-banner .inner{ position:relative; z-index:2; max-width:640px; margin:0 auto;}
+  .cta-banner .eyebrow{ color:var(--gold-bright); }
+  .cta-banner h2{ font-size:clamp(2.1rem,4vw,3.1rem); margin:18px 0 20px; line-height:1.2;}
+  .cta-banner p{ color:rgba(250,245,234,0.78); font-size:1.02rem; line-height:1.8; margin-bottom:38px;}
+  .cta-row{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--charcoal); color:rgba(250,245,234,0.75); padding:80px 0 36px;}
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:50px; padding-bottom:54px;
+    border-bottom:1px solid rgba(250,245,234,0.12);
+  }
+  .footer-logo{
+    font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--cream); margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .footer-grid p{ font-size:0.88rem; line-height:1.8; max-width:300px;}
+  .footer-col h4{
+    font-size:0.74rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-bright);
+    margin-bottom:18px; font-weight:500; font-family:'Jost',sans-serif;
+  }
+  .footer-col a, .footer-col span{
+    display:block; font-size:0.9rem; margin-bottom:12px; color:rgba(250,245,234,0.75);
+  }
+  .footer-col a:hover{ color:var(--gold-bright); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:30px;
+    font-size:0.78rem; color:rgba(250,245,234,0.45); flex-wrap:wrap; gap:14px;
+  }
+  @media (max-width:880px){ .footer-grid{grid-template-columns:1fr; gap:36px;} }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .float-wa{
+    position:fixed; bottom:26px; right:26px; z-index:600;
+    background:var(--gold); color:var(--cream);
+    width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,0.45);
+    transition:transform .3s ease, background .3s ease;
+  }
+  .float-wa:hover{ transform:scale(1.08); background:var(--gold-deep);}
+
+  [data-parallax]{ will-change:transform; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    [data-parallax]{ transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo">
+    <img src="assets/logo_light.png" alt="Athena Buket" class="logo" id="navLogoImg">
+  </a>
+  <nav class="nav-links">
+    <a href="#kisah">Kisah Kami</a>
+    <a href="#koleksi">Koleksi</a>
+    <a href="#katalog">Katalog</a>
+    <a href="#proses">Proses</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#kontak" class="btn btn-solid nav-cta">Pesan Sekarang</a>
+  </nav>
+  <button class="nav-burger" onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Menu</button>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-illustration" data-parallax data-speed="0.18">
+    <svg viewBox="0 0 600 700" fill="none">
+      <g stroke="#D4A656" stroke-width="1.1" opacity="0.9">
+        <path d="M300 640 C260 520 240 420 300 300 C360 420 340 520 300 640Z"/>
+        <path d="M300 300 C230 280 170 230 150 150 C240 160 290 210 300 300Z"/>
+        <path d="M300 300 C370 280 430 230 450 150 C360 160 310 210 300 300Z"/>
+        <path d="M300 300 C260 250 220 230 170 235 C200 280 240 300 300 300Z"/>
+        <path d="M300 300 C340 250 380 230 430 235 C400 280 360 300 300 300Z"/>
+        <path d="M420 360 C460 340 500 345 530 375 C495 395 455 392 420 360Z"/>
+        <path d="M430 410 C470 400 505 412 525 445 C490 458 455 448 430 410Z"/>
+        <path d="M440 470 C475 465 505 480 520 510 C488 518 458 505 440 470Z"/>
+        <circle cx="300" cy="190" r="42" stroke="#D4A656" stroke-width="1" opacity="0.85"/>
+        <path d="M300 148c10 14 10 28 0 42-10-14-10-28 0-42Z"/>
+        <path d="M262 168c14 6 24 16 28 30-16-2-28-12-28-30Z"/>
+        <path d="M338 168c-14 6-24 16-28 30 16-2 28-12 28-30Z"/>
+        <path d="M268 205c10 12 24 16 38 14-8-14-22-22-38-14Z"/>
+        <path d="M332 205c-10 12-24 16-38 14 8-14 22-22 38-14Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-content" data-parallax data-speed="-0.08">
+    <span class="eyebrow">Athena Buket — Jakarta</span>
+    <h1>Setiap Tangkai,<br><em>Setiap Cerita.</em></h1>
+    <p>Buket bunga segar yang dirangkai dengan teliti untuk momen-momen yang layak dirayakan — wisuda, ulang tahun, hari jadi, hingga acara kampus.</p>
+    <div class="hero-cta">
+      <a href="#kontak" class="btn btn-solid">Pesan via WhatsApp</a>
+      <a href="#koleksi" class="btn btn-outline light">Lihat Koleksi</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Gulir</span><span class="line"></span></div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story" id="kisah">
+  <div class="wrap story-grid">
+    <div class="story-text" data-parallax data-speed="0.06">
+      <span class="eyebrow">Kisah Kami</span>
+      <h2>Dari Sela Kuliah, Tumbuh Jadi Kebiasaan Merayakan.</h2>
+      <p>Athena Buket dimulai dari hal sederhana: merangkai bunga untuk teman kampus yang ingin memberi kado wisuda yang berkesan, namun tetap ramah di kantong mahasiswa.</p>
+      <p>Nama "Athena" kami pilih bukan tanpa alasan — terinspirasi dari sosok yang identik dengan ketelitian, kebijaksanaan, dan rasa. Tiga hal yang selalu kami bawa ke setiap rangkaian: dipilih dengan cermat, dirangkai dengan hati, dikirim tepat waktu.</p>
+      <p class="story-signature">— Tumbuh bersama cerita teman-teman kampus di Jakarta.</p>
+    </div>
+    <div class="story-visual" data-parallax data-speed="-0.05">
+      <div class="ring r2"></div>
+      <div class="ring r1"></div>
+      <div class="layer layer-back"></div>
+      <svg viewBox="0 0 300 320" fill="none">
+        <g stroke="#B8863A" stroke-width="1.1">
+          <ellipse cx="150" cy="120" rx="46" ry="58" opacity="0.9"/>
+          <path d="M150 62c14 18 14 38 0 58-14-20-14-40 0-58Z" opacity="0.8"/>
+          <path d="M104 120c-22 6-38 22-44 44 24 2 42-12 44-44Z" opacity="0.75"/>
+          <path d="M196 120c22 6 38 22 44 44-24 2-42-12-44-44Z" opacity="0.75"/>
+          <path d="M150 150c8 22 6 44-6 64-12-20-10-44 6-64Z" opacity="0.7"/>
+          <line x1="150" x2="150" y1="178" y2="300"/>
+          <path d="M150 200c-12 6-20 16-22 30 14 0 24-10 22-30Z"/>
+          <path d="M150 230c12 6 20 16 22 30-14 0-24-10-22-30Z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div><div class="stat-num">300+</div><div class="stat-label">Buket Terkirim</div></div>
+    <div><div class="stat-num">20+</div><div class="stat-label">Kampus &amp; Komunitas Terlayani</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Bunga Segar Pilihan</div></div>
+    <div><div class="stat-num">&lt;24 Jam</div><div class="stat-label">Estimasi Pengantaran Kilat</div></div>
+  </div>
+</section>
+
+<!-- ================= COLLECTIONS ================= -->
+<section class="collections" id="koleksi">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Koleksi Kami</span>
+      <div class="divider-line"></div>
+      <h2>Buket untuk Setiap Momen Kuliahmu</h2>
+      <p>Empat kategori yang paling sering jadi alasan teman-teman menghubungi kami — bisa dikustom sesuai budget dan cerita kamu.</p>
+    </div>
+    <div class="collection-grid">
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M24 6c4 5 4 11 0 17-4-6-4-12 0-17Z"/><path d="M24 23c6 1 10 5 12 11-7 0-11-3-12-11Z"/><path d="M24 23c-6 1-10 5-12 11 7 0 11-3 12-11Z"/></svg>
+        <h3>Wisuda</h3>
+        <p>Buket elegan dengan pita custom nama dan fakultas — pelengkap sempurna hari kelulusan.</p>
+        <span class="price">Mulai dari Rp 65.000</span>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="24" cy="20" r="10"/><path d="M24 30v12M18 36h12"/></svg>
+        <h3>Surprise &amp; Ulang Tahun</h3>
+        <p>Rangkaian ceria penuh warna untuk merayakan hari spesial sahabat atau orang tersayang.</p>
+        <span class="price">Mulai dari Rp 55.000</span>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M24 36c-9-6-15-12-15-19a8 8 0 0 1 15-4 8 8 0 0 1 15 4c0 7-6 13-15 19Z"/></svg>
+        <h3>Anniversary &amp; Romansa</h3>
+        <p>Mawar dan bunga pilihan dengan tone hangat, untuk momen jadian, lamaran, atau hari jadi.</p>
+        <span class="price">Mulai dari Rp 75.000</span>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1"><rect x="8" y="14" width="32" height="22" rx="1"/><path d="M8 20h32M16 14V8M32 14V8"/></svg>
+        <h3>Acara Kampus &amp; Organisasi</h3>
+        <p>Paket buket dan papan bunga untuk seminar, pelantikan, atau acara himpunan dan ormawa.</p>
+        <span class="price">Harga khusus partai</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATALOG (gambar, nama, harga) ================= -->
+<!--
+  CARA MENGGANTI FOTO:
+  Tiap produk punya elemen <div class="catalog-img c1">...</div> yang sekarang diisi
+  ilustrasi garis sebagai placeholder. Untuk pakai foto asli, hapus isi <div> tersebut
+  dan ganti dengan: <img src="foto-buket-1.jpg" alt="Nama Buket">
+  Letakkan file foto di folder yang sama dengan file HTML ini.
+-->
+<section class="catalog" id="katalog">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Katalog Produk</span>
+      <div class="divider-line"></div>
+      <h2>Pilih Buket, Tinggal Pesan</h2>
+      <p>Harga di bawah adalah harga dasar — warna dan jenis bunga bisa disesuaikan saat konsultasi.</p>
+    </div>
+
+    <div class="catalog-filter" id="catalogFilter">
+      <button class="filter-btn active" data-filter="semua">Semua</button>
+      <button class="filter-btn" data-filter="wisuda">Wisuda</button>
+      <button class="filter-btn" data-filter="ultah">Ulang Tahun</button>
+      <button class="filter-btn" data-filter="anniversary">Anniversary</button>
+      <button class="filter-btn" data-filter="kampus">Kampus</button>
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+
+      <div class="catalog-card" data-category="wisuda">
+        <div class="catalog-img c1">
+          <span class="catalog-tag">Wisuda</span>
+          <svg viewBox="0 0 200 200" width="68%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <path d="M100 178c-16-40-16-76 0-116 16 40 16 76 0 116Z"/>
+            <path d="M100 62c-20-6-36-20-42-40 22 0 38 12 42 40Z"/>
+            <path d="M100 62c20-6 36-20 42-40-22 0-38 12-42 40Z"/>
+            <path d="M100 62c-12-16-30-24-50-22 10 18 28 26 50 22Z"/>
+            <path d="M100 62c12-16 30-24 50-22-10 18-28 26-50 22Z"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Wisuda Klasik</div>
+          <div class="catalog-desc">Bunga potong segar dengan pita custom nama &amp; fakultas.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 65.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Wisuda%20Klasik" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="wisuda">
+        <div class="catalog-img c2">
+          <span class="catalog-tag">Wisuda</span>
+          <svg viewBox="0 0 200 200" width="62%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <circle cx="100" cy="86" r="34"/>
+            <circle cx="58" cy="110" r="24"/>
+            <circle cx="142" cy="110" r="24"/>
+            <line x1="100" y1="150" x2="100" y2="178"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Wisuda Mawar Putih</div>
+          <div class="catalog-desc">Rangkaian mawar putih premium, kesan elegan dan formal.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 95.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Wisuda%20Mawar%20Putih" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="wisuda">
+        <div class="catalog-img c3">
+          <span class="catalog-tag">Wisuda</span>
+          <svg viewBox="0 0 200 200" width="66%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <path d="M100 178c-16-40-16-76 0-116 16 40 16 76 0 116Z"/>
+            <rect x="70" y="40" width="60" height="22" rx="2"/>
+            <rect x="76" y="62" width="48" height="18" rx="2"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Wisuda Money Bouquet</div>
+          <div class="catalog-desc">Kombinasi bunga segar dan lipatan uang sebagai kado praktis.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 150.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Wisuda%20Money%20Bouquet" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="ultah">
+        <div class="catalog-img c4">
+          <span class="catalog-tag">Ulang Tahun</span>
+          <svg viewBox="0 0 200 200" width="64%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <circle cx="70" cy="80" r="22"/>
+            <circle cx="120" cy="70" r="18"/>
+            <circle cx="130" cy="110" r="20"/>
+            <circle cx="85" cy="118" r="16"/>
+            <line x1="100" y1="138" x2="100" y2="178"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Ceria Pelangi</div>
+          <div class="catalog-desc">Campuran bunga warna-warni untuk kado ulang tahun yang ceria.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 55.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Ceria%20Pelangi" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="ultah">
+        <div class="catalog-img c1">
+          <span class="catalog-tag">Ulang Tahun</span>
+          <svg viewBox="0 0 200 200" width="58%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <rect x="60" y="80" width="80" height="70" rx="3"/>
+            <path d="M60 100h80M100 80v70"/>
+            <path d="M85 80c0-14 6-26 15-26s15 12 15 26"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Surprise Box Mini</div>
+          <div class="catalog-desc">Boks bunga mini, praktis dititip ke kos atau meja kerja.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 60.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Surprise%20Box%20Mini" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="anniversary">
+        <div class="catalog-img c2">
+          <span class="catalog-tag">Anniversary</span>
+          <svg viewBox="0 0 200 200" width="60%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <path d="M100 145c-36-24-58-46-58-72a30 30 0 0 1 58-14 30 30 0 0 1 58 14c0 26-22 48-58 72Z"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Romansa Merah</div>
+          <div class="catalog-desc">Mawar merah pilihan untuk momen jadian atau hari jadi.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 85.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Romansa%20Merah" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="anniversary">
+        <div class="catalog-img c3">
+          <span class="catalog-tag">Anniversary</span>
+          <svg viewBox="0 0 200 200" width="64%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <path d="M100 178c-16-40-16-76 0-116 16 40 16 76 0 116Z"/>
+            <path d="M100 62c-22-4-40-16-48-36 24-2 42 8 48 36Z"/>
+            <path d="M100 62c22-4 40-16 48-36-24-2-42 8-48 36Z"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Elegan Lavender</div>
+          <div class="catalog-desc">Tone ungu lembut, cocok untuk pasangan yang suka warna lembut.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 90.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Elegan%20Lavender" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-category="kampus">
+        <div class="catalog-img c4">
+          <span class="catalog-tag">Kampus</span>
+          <svg viewBox="0 0 200 200" width="64%" fill="none" stroke="#FAF5EA" stroke-width="1.2" opacity="0.92">
+            <rect x="50" y="60" width="100" height="70" rx="2"/>
+            <path d="M50 76h100M70 60V48M130 60V48"/>
+          </svg>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-name">Bunga Meja Acara Kampus</div>
+          <div class="catalog-desc">Rangkaian meja untuk seminar, pelantikan, atau acara himpunan.</div>
+          <div class="catalog-row">
+            <span class="catalog-price">Rp 120.000</span>
+            <a class="catalog-order" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20Bunga%20Meja%20Acara%20Kampus" target="_blank" rel="noopener">Pesan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="proses">
+  <svg class="process-deco" viewBox="0 0 300 300" fill="none">
+    <g stroke="#B8863A" stroke-width="1"><circle cx="150" cy="150" r="140"/><circle cx="150" cy="150" r="100"/></g>
+  </svg>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cara Pesan</span>
+      <div class="divider-line"></div>
+      <h2>Tiga Langkah, Buket Siap Diantar</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="num">01</span>
+        <h3>Konsultasi Singkat</h3>
+        <p>Chat kami di WhatsApp, ceritakan momen, warna favorit, dan budget kamu.</p>
+        <span class="process-line"></span>
+      </div>
+      <div class="process-step">
+        <span class="num">02</span>
+        <h3>Kami Rangkai</h3>
+        <p>Florist kami memilih bunga segar hari itu dan merangkainya sesuai tema yang disepakati.</p>
+        <span class="process-line"></span>
+      </div>
+      <div class="process-step">
+        <span class="num">03</span>
+        <h3>Antar Tepat Waktu</h3>
+        <p>Diantar langsung ke kampus, kos, atau lokasi acara — pas di waktu yang kamu butuhkan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="testimoni">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Kata Mereka</span>
+      <div class="divider-line"></div>
+      <h2>Cerita dari Teman-Teman Kampus</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p>Pesan H-1 buat wisuda sahabat, tetap rapi dan segar saat diantar ke kampus. Pita namanya juga rapi banget.</p>
+        <div class="testi-name">Nadia R.</div>
+        <div class="testi-role">Mahasiswi, Jakarta</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p>Harganya ramah kantong mahasiswa tapi hasilnya tidak murahan. Jadi langganan buat kado pacar.</p>
+        <div class="testi-name">Bagas P.</div>
+        <div class="testi-role">Mahasiswa, Jakarta</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p>Pernah pesan banyak sekaligus buat acara pelantikan ormawa, komunikasinya enak dan tepat waktu.</p>
+        <div class="testi-name">Citra A.</div>
+        <div class="testi-role">Pengurus Himpunan Mahasiswa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BANNER ================= -->
+<section class="cta-banner" id="kontak">
+  <svg class="cta-illustration" data-parallax data-speed="0.1" viewBox="0 0 600 400" fill="none">
+    <g stroke="#D4A656" stroke-width="1">
+      <path d="M300 380c-40-90-40-170 0-260 40 90 40 170 0 260Z"/>
+      <path d="M150 200c30-40 80-60 150-60-10 50-60 80-150 60Z"/>
+      <path d="M450 200c-30-40-80-60-150-60 10 50 60 80 150 60Z"/>
+    </g>
+  </svg>
+  <div class="inner">
+    <span class="eyebrow">Wujudkan Momen Spesialmu</span>
+    <h2>Siap Merangkai Cerita Kamu Selanjutnya?</h2>
+    <p>Tinggal chat, ceritakan momennya, dan biar kami yang urus rangkaiannya. Estimasi balasan cepat, cocok untuk pesanan mendadak sekalipun.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket%2C%20saya%20ingin%20pesan%20buket" class="btn btn-solid" target="_blank" rel="noopener">Chat WhatsApp</a>
+      <a href="https://instagram.com/athena.buket" class="btn btn-outline light" target="_blank" rel="noopener">Lihat Katalog Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c2 3 2 6 0 9-2-3-2-6 0-9Z"/><path d="M12 11c3 1 5 3 6 6-3 0-6-1-8-3"/><path d="M12 11c-3 1-5 3-6 6 3 0 6-1 8-3"/></svg>
+          Athena Buket
+        </div>
+        <p>Studio buket rumahan di Jakarta — merangkai bunga segar untuk momen kuliah, kerja, dan kehidupan sehari-hari.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <a href="#kisah">Kisah Kami</a>
+        <a href="#koleksi">Koleksi</a>
+        <a href="#katalog">Katalog</a>
+        <a href="#proses">Cara Pesan</a>
+        <a href="#testimoni">Testimoni</a>
+      </div>
+      <div class="footer-col">
+        <h4>Hubungi Kami</h4>
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp: 0812-3456-7890</a>
+        <a href="https://instagram.com/athena.buket" target="_blank" rel="noopener">Instagram: @athena.buket</a>
+        <span>Jakarta, Indonesia</span>
+        <span>Buka setiap hari, 09.00–21.00</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Athena Buket. Seluruh hak cipta dilindungi.</span>
+      <span>Dirangkai dengan hati, untuk setiap cerita.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/6281234567890?text=Halo%20Athena%20Buket" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2Zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12 3.6 7.4 7.4 3.6 12 3.6S20.4 7.4 20.4 12 16.6 20 12 20Zm5-7.4c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.2-.6.9-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.3-1.4-3.1-2.6-.2-.3 0-.4.1-.6.1-.1.2-.3.4-.5.1-.2.1-.4 0-.6-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.7 2.7 4.1 3.7 2.4 1 2.4.7 2.8.6.4 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>
+</a>
+
+<script>
+  // Sticky nav background
+  const nav = document.getElementById('nav');
+  const navLogoImg = document.getElementById('navLogoImg');
+  const onScroll = () => {
+    const isScrolled = window.scrollY > 40;
+    nav.classList.toggle('scrolled', isScrolled);
+    if (navLogoImg) {
+      navLogoImg.src = isScrolled ? 'assets/logo_dark.png' : 'assets/logo_light.png';
+    }
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Parallax effect
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+
+  function updateParallax(){
+    const viewportH = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.speed || 0.1);
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height/2 - viewportH/2;
+      const offset = center * speed * -1;
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+  }
+
+  let ticking = false;
+  function onScrollParallax(){
+    if (!ticking && !reduceMotion){
+      window.requestAnimationFrame(() => { updateParallax(); ticking = false; });
+      ticking = true;
+    }
+  }
+  if (!reduceMotion){
+    window.addEventListener('scroll', onScrollParallax, {passive:true});
+    window.addEventListener('resize', onScrollParallax);
+    updateParallax();
+  }
+
+  // Reveal on scroll — elements with data-parallax only fade (their transform is owned by the parallax loop);
+  // plain elements fade and rise.
+  const revealTargets = document.querySelectorAll('.card, .catalog-card, .process-step, .testi-card, .story-text, .story-visual');
+  revealTargets.forEach(el => {
+    el.style.opacity = 0;
+    if (!el.hasAttribute('data-parallax')){
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .7s ease, transform .7s ease';
+    } else {
+      el.style.transition = 'opacity .9s ease';
+    }
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        if (!entry.target.hasAttribute('data-parallax')){
+          entry.target.style.transform = 'translateY(0)';
+        }
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealTargets.forEach(el => io.observe(el));
+
+  // Filter katalog berdasarkan kategori
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const catalogCards = document.querySelectorAll('.catalog-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      catalogCards.forEach(card => {
+        const show = filter === 'semua' || card.dataset.category === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
